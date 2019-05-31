@@ -19,7 +19,7 @@ while(<FILE>){
   $s2 =~ tr/0123/actg/;
   $s1 =~ tr/ED/TG/;
   $s2 =~ tr/ED/TG/;
-  my $omh = `../omh_compue/omh_compare_sequences -k $k -l 2 -m 500 -s ../omh_compute/seed $s1 $s2`;
+  my $omh = `../omh_compue/omh_compare_exact_seq -k $k $s1 $s2`;
   chomp $omh;
   print OFILE "$spl[2] $spl[5] $spl[6] $omh $spl[7]\n";
 }
