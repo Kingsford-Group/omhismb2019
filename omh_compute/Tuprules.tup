@@ -1,0 +1,59 @@
+# Default rules
+!cc    = |> ^ CC    %f^ $(CC) $(CPPFLAGS) $(CPPFLAGS_%B) @(CPPFLAGS) $(CFLAGS) $(CFLAGS_%B) @(CFLAGS) -c -o %o %f |> %B.o
+!cxx   = |> ^ CXX   %f^ $(CXX) $(CPPFLAGS) $(CPPFLAGS_%B) @(CPPFLAGS) $(CXXFLAGS) $(CXXFLAGS_%B) @(CXXFLAGS) -c -o %o %f |> %B.o
+!ld    = |> ^ LD    %o^ $(CC) $(T_LDFLAGS) $(LDFLAGS) $(LDFLAGS_%O) $(LOADLIBES) $(LDLIBS) %f -o %o |>
+!lxxd  = | $(LDLIBS_%B) |> ^ LXX   %o^ $(CXX) $(LDFLAGS) $(LDFLAGS_%o) @(LDFLAGS) %f $(LDLIBS) $(LDLIBS_%o) @(LDLIBS) -o %o |>
+!cld   = |> ^ CLD   %o^ $(CC) $(CPPFLAGS) $(CPPFLAGS_%B) @(CPPFLAGS) $(CFLAGS) $(CFLAGS_%B) @(CFLAGS) %f -o %o |>
+!cxxld = |> ^ CXXLD %o^ $(CXX) $(CPPFLAGS) $(CPPFLAGS_%B) @(CPPFLAGS) $(CXXFLAGS) $(CXXFLAGS_%B) @(CXXFLAGS) $(LDFLAGS) $(LDFLAGS_%o) @(LDFLAGS) %f $(LDLIBS) $(LDLIBS_%B) @(LDLIBS) -o %o |> %B
+!mpic  = |> ^ MPIC  %f^ $(MPIC) $(CPPFLAGS) $(CPPFLAGS_%B) @(CPPFLAGS) $(CFLAGS) $(CFLAGS_%B) @(CFLAGS) -c -o %o %f |> %B.o
+!mpixx = |> ^ MPIXX %f^ $(MPIXX) $(CPPFLAGS) $(CPPFLAGS_%B) @(CPPFLAGS) $(CXXFLAGS) $(CXXFLAGS_%B) @(CXXFLAGS) -c -o %o %f |> %B.o
+!mpild = |> ^ MPILD %o^ $(MPIC) $(T_LDFLAGS) $(LDFLAGS) $(LDFLAGS_%O) $(LOADLIBES) $(LDLIBS) %f -o %o |>
+!mpilxx = | $(LDLIBS_%B) |> ^ MPILXX %o^ $(MPIXX) $(LDFLAGS) $(LDFLAGS_%o) @(LDFLAGS) %f $(LDLIBS) $(LDLIBS_%o) @(LDLIBS) -o %o |>
+!ar    = |> ^ AR    %o^ $(AR) sruv $(ARFLAGS) $(ARFLAGS_%O) @(ARFLAGS) %o %f |>
+!yaggo = |> ^ YAGGO %f^ $(YAGGO) %f |> %B.hpp
+!crystal = |> ^ CRYST %f^ $(CRYSTAL) build @(CRYSTALFLAGS) $(CRYSTALFLAGS) %f -o %o |> %B
+
+# Default variables
+ifdef CC
+  CC = @(CC)
+else
+  CC = gcc
+endif
+
+ifdef CXX
+  CXX = @(CXX)
+else
+  CXX = g++
+endif
+
+ifdef AR
+  AR = @(AR)
+else
+  AR = ar
+endif
+
+ifdef MPICC
+  MPICC = @(MPICC)
+else
+  MPICC = mpicc
+endif
+
+ifdef MPIXX
+  MPIXX = @(MPIXX)
+else
+  MPIXX = mpicxx
+endif
+
+ifdef YAGGO
+  YAGGO = @(YAGGO)
+else
+  YAGGO = yaggo
+endif
+
+ifdef CRYSTAL
+  CRYSTAL = @(CRYSTAL)
+else
+  CRYSTAL = crystal
+endif
+
+TOPDIR=$(TUP_CWD)
