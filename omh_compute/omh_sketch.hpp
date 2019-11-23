@@ -292,6 +292,7 @@ public:
   bool                           seedin_given;
   const char *                   seedout_arg;
   bool                           seedout_given;
+  bool                           randseed_flag;
   ::std::vector<const char *>    sequence_arg;
   typedef ::std::vector<const char *>::iterator sequence_arg_it;
   typedef ::std::vector<const char *>::const_iterator sequence_arg_const_it;
@@ -301,7 +302,8 @@ public:
     RC_OPT,
     CASE_OPT,
     SEEDIN_OPT,
-    SEEDOUT_OPT
+    SEEDOUT_OPT,
+    RANDSEED_OPT
   };
 
   omh_sketch() :
@@ -313,6 +315,7 @@ public:
     output_arg(""), output_given(false),
     seedin_arg(""), seedin_given(false),
     seedout_arg(""), seedout_given(false),
+    randseed_flag(false),
     sequence_arg()
   { }
 
@@ -325,6 +328,7 @@ public:
     output_arg(""), output_given(false),
     seedin_arg(""), seedin_given(false),
     seedout_arg(""), seedout_given(false),
+    randseed_flag(false),
     sequence_arg()
   { parse(argc, argv); }
 
@@ -338,6 +342,7 @@ public:
       {"output", 1, 0, 'o'},
       {"seedin", 1, 0, SEEDIN_OPT},
       {"seedout", 1, 0, SEEDOUT_OPT},
+      {"randseed", 0, 0, RANDSEED_OPT},
       {"help", 0, 0, 'h'},
       {"usage", 0, 0, 'U'},
       {"version", 0, 0, 'V'},
@@ -402,6 +407,9 @@ public:
         seedout_given = true;
         seedout_arg = optarg;
         break;
+      case RANDSEED_OPT:
+        randseed_flag = true;
+        break;
       }
     }
 
@@ -462,8 +470,9 @@ public:
     "     --rc                                 include reverse complement (false)\n"
     "     --case                               do not ignore case (false)\n"
     " -o, --output=PATH                        Write sketches to given file instead of 1 file per fasta entry\n"
-    "     --seedin=string                      Seed in\n"
-    "     --seedout=string                     Seed out\n"
+    "     --seedin=PATH                        Seed in\n"
+    "     --seedout=PATH                       Seed out\n"
+    "     --randseed                           If no seedin, generate a random seed (defaults to default seed) (false)\n"
     " -U, --usage                              Usage\n"
     " -h, --help                               This message\n"
     " -V, --version                            Version";
@@ -484,6 +493,7 @@ public:
     os << "output_given:" << output_given << " output_arg:" << output_arg << "\n";
     os << "seedin_given:" << seedin_given << " seedin_arg:" << seedin_arg << "\n";
     os << "seedout_given:" << seedout_given << " seedout_arg:" << seedout_arg << "\n";
+    os << "randseed_flag:" << randseed_flag << "\n";
     os << "sequence_arg:" << vec_str(sequence_arg) << "\n";
   }
 };

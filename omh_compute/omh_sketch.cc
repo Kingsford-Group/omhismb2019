@@ -21,7 +21,8 @@ int main(int argc, char *argv[]) {
   }
 
   LongSeed<rng_type> seed(args.seedout_given ? args.seedout_arg : nullptr,
-                          args.seedin_given  ? args.seedin_arg  : nullptr);
+                          args.seedin_given  ? args.seedin_arg  : nullptr,
+                          args.randseed_flag);
   omh_sketcher<rng_type> sketcher(args.k_arg, args.l_arg, args.m_arg, seed);
 
   std::string name, seq;
