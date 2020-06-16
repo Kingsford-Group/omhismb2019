@@ -1,7 +1,5 @@
 include_rules
 
-include_rules
-
 CXXFLAGS=-I. -std=c++11 -O3 @(XXHASH_CFLAGS)
 LDFLAGS=@(XXHASH_LDFLAGS) -L.
 LDLIBS=@(XXHASH_LDLIBS) -lomh -lxxhash
@@ -15,5 +13,5 @@ CXXFLAGS_omh_compare_sketches = -pthread
 : foreach *.yaggo |> !yaggo |> {args}
 
 # Commands
-MAINS = omh_sketch.cc omh_compare_sketch.cc omh_compare_exact_seq.cc
+MAINS = omh_sketch.cc omh_compare_sketch.cc omh_compare_exact.cc omh_compare_exact_seq.cc omh_compare_sketches.cc
 : foreach $(MAINS) | {args} libomh.a |> !cxxld |>
