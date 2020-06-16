@@ -28,8 +28,9 @@ protected:
   glob_t pglob;
 public:
   glob_files(const char* pattern) {
-    if(::glob(pattern, GLOB_NOSORT, errfunc, &pglob) != 0)
-      throw std::runtime_error(std::string("Glob failed: ") + strerror_r(errno));
+    const int ret = ::glob(pattern, GLOB_NOSORT, errfunc, &pglob);
+    if(ret != 0 && ret != GLOB_NOMATCH)
+      throw std::runtime_error(std::string("Glob error"));
   }
 
   ~glob_files() {

@@ -22,4 +22,6 @@ noinst_LIBRARIES = libomh.a
 libomh_a_SOURCES = omh.cpp omh.hpp omh_exact.cpp omh_exact.hpp	 \
                    parse_file.cpp parse_file.hpp combination.hpp \
                    xxhash.hpp seeded_prg.hpp glob.hpp
-LDADD = libomh.a
+LDADD = $(builddir)/libomh.a
+
+include tests/Makefile.am
