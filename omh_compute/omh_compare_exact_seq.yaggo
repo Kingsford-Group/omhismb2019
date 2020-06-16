@@ -1,0 +1,18 @@
+purpose "Compare sequences using exact OMH"
+
+option("k") {
+  description "Length of k-mer"
+  uint32; default 5 }
+option("l") {
+  description "Length of vector IGNORED. FIX to 2"
+  uint32; default 2 }
+option("rc") {
+  description "Consider reverse complement"
+  off }
+
+arg("seq1") {
+  description "First sequence"
+  string; typestr "SEQUENCE" }
+arg("seq2") {
+  description "Second sequence"
+  string; typestr "SEQUENCE" }

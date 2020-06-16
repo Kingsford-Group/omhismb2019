@@ -1,0 +1,15 @@
+purpose "Compare two sketches"
+
+option("m") {
+  description "Compare only m first entries"
+  int32; }
+option("c", "circular") {
+  description "Sketch of a circular genome"
+  off }
+
+arg("sk1") {
+  description "First sketch"
+  c_string; typestr "PATH" }
+arg("sk2") {
+  description "Second sketch"
+  c_string; typestr "PATH" }

@@ -1,0 +1,34 @@
+purpose "Compute sketches of sequence in fasta file"
+
+option("k") {
+  description "kmer length"
+  uint32; default 5 }
+option("l") {
+  description "vector length"
+  uint32; default 2 }
+option("m") {
+  description "sketch length"
+  uint32; default 1000 }
+option("rc") {
+  description "include reverse complement"
+  off }
+option("case") {
+  description "do not ignore case"
+  off }
+option("o", "output") {
+  description "Write sketches to given file instead of 1 file per fasta entry"
+  c_string; typestr "PATH" }
+
+option("seedin") {
+  description "Seed in"
+  c_string; typestr "PATH" }
+option("seedout") {
+  description "Seed out"
+  c_string; typestr "PATH" }
+option("randseed") {
+  description "If no seedin, generate a random seed (defaults to default seed)"
+  off }
+
+arg("sequence") {
+  description "sequence file"
+  c_string; typestr "PATH"; multiple }
