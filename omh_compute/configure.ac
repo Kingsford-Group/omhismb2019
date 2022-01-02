@@ -1,7 +1,6 @@
 AC_INIT([omh_compute], [0.0.1], [gmarcais@cs.cmu.edu])
 AC_CANONICAL_HOST
 AC_CONFIG_MACRO_DIR([m4])
-AM_INIT_AUTOMAKE
 AM_INIT_AUTOMAKE([subdir-objects foreign parallel-tests color-tests])
 AM_SILENT_RULES([yes])
 #AC_CONFIG_SRCDIR([.])
