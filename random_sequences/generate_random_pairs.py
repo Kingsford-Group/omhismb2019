@@ -9,15 +9,15 @@ import numpy as np
 from scipy import stats
 import random
 
-parser = argparse.ArgumentParser(description='Exaustively Search Edit Distance and Jaccard With and Without Weight')
-parser.add_argument('-n', dest='n', type=int, default=3)
-parser.add_argument('-i', dest='i', type=int, default=1)
-parser.add_argument('-m', dest='m', type=int, default=2)
-parser.add_argument('-k', dest='k', type=int, default=2)
-parser.add_argument('-s', dest='s', type=int, default=2)
-parser.add_argument('-r', dest='r', type=int, default=1000)
-parser.add_argument('-trim', dest='trim', default=False, action='store_true')
-parser.add_argument('-fname',dest='fname', type=str)
+parser = argparse.ArgumentParser(description='Exaustively Search Edit Distance and Jaccard With and Without Weight, prints sequences and weights to standard out')
+parser.add_argument('-n', dest='n', type=int, default=3, help="Total sequence length")
+parser.add_argument('-i', dest='i', type=int, default=1, help="Indel cost for edit distance/alignment scoring")
+parser.add_argument('-m', dest='m', type=int, default=2, help="Mismatch cost for edit distance/alignment scoring")
+parser.add_argument('-k', dest='k', type=int, default=2, help="k-mer length")
+parser.add_argument('-s', dest='s', type=int, default=2, help="Alphabet size (sigma)")
+parser.add_argument('-r', dest='r', type=int, default=1000, help="Number of samples")
+parser.add_argument('-trim', dest='trim', default=False, action='store_true', help="Enable to ensure all random sequences are exactly n characters")
+parser.add_argument('-fname',dest='fname', type=str, help="Output figure comparing scores")
 
 args = parser.parse_args()
 
