@@ -205,7 +205,7 @@ for i in range(0,args.r):
   E.append(la)
   J.append(ji)
   W.append(wji)
-  print s1 + " " + s2 + " " + str(edi) + " " + str(ga) + " " + str(la) + " " + str(ji) + " " + str(wji) + " " + str(hdi)
+  print(s1 + " " + s2 + " " + str(edi) + " " + str(ga) + " " + str(la) + " " + str(ji) + " " + str(wji) + " " + str(hdi))
     
     
 slope_j, intercept_j, r_value_j, p_value_j, std_err_j = stats.linregress(E, J)
